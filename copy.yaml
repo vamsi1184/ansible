@@ -1,0 +1,12 @@
+--- 
+- name: working with copy module
+  hosts: all
+  tasks:
+    - name: copying hosts from source to destination
+      copy:
+        src: /etc/hosts
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes 

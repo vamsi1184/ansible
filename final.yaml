@@ -1,0 +1,3 @@
+---
+- import_playbook: cond.yaml
+- import_playbook: hostname.yaml

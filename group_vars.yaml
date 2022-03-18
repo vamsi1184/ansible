@@ -1,0 +1,8 @@
+---
+- name: working with group_vars variables
+  hosts: all
+  vars:
+    - subject: "ansible"
+  tasks:
+    - name: print the variable value
+      command: echo "my environment is {{env}},my subject is {{subject}}"

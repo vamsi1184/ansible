@@ -1,0 +1,8 @@
+---
+- name: working with vault
+  hosts: all
+  vars_files:
+    - mydbsecrets.yaml
+  tasks:
+    - name: printing the vault information
+      command: echo "my dbname is {{dbname}},my db pass is {{dbpass}}"

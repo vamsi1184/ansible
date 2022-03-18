@@ -1,0 +1,15 @@
+---
+- name: working with special case delegate_to
+  hosts: all
+  serial: 1
+  tasks:
+    - name: printing hostipaddress
+      command: hostname -i
+
+    - name: printing server name
+      command: uname -a
+      delegate_to: server1
+
+
+
+

@@ -1,0 +1,12 @@
+---
+- name: working with vaariable
+  hosts: all
+  vars: 
+    - myval1: 20
+    - myval2: 30
+    - myval3: 40
+  vars_files:
+    - variables.yaml
+  tasks:
+    - name: printing the variable
+      command: echo "hi my value is {{myval1}},my subject is {{mysubject}},my batch is {{mybatch}}"

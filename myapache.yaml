@@ -1,0 +1,39 @@
+---
+- name: working with apache installation
+  hosts: all
+  tasks:
+    - name: getting the servers public ipaddress
+      command: curl http://169.254.169.254/latest/meta-data/public-ipv4
+      register: myip
+
+    - set_fact: mypubip="{{myip.stdout_lines[0]}}"
+
+    - name: installing apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: enabling the httpd
+      systemd:
+        name: httpd
+        enabled: yes
+
+    - name: copying the index files to servers
+      template:
+        src: index.html
+        dest: /var/www/html/
+      notify: apache restart
+
+    - name: changing the conf file for apache
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^#ServerName www.example.com'
+        replace: 'ServerName {{mypubip}}'
+      notify: apache restart
+
+  handlers:
+    - name: apache restart
+      systemd:
+        name: httpd
+        state: restarted
+      

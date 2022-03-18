@@ -1,0 +1,31 @@
+---
+- name: working with conditions
+  hosts: server1
+  vars: 
+    val1: 10
+  tasks:
+    - name: working with == operator
+      command: echo "hi i am == operator"
+      when: ansible_distribution == "Amazon"
+      tags: t1
+
+    - name: working with or operator
+      command: echo "hi i am or operator"
+      when: (ansible_os_family == "Redhat") or (ansible_distribution == "Amazon")
+      tags: t2
+
+    - name: working with and oeprator
+      command: echo "hi i am and operator"
+      when: (ansible_os_family == "Redhat") and(ansible_distribution == "Amazon")
+      tags: t3
+
+    - name: working with > operator
+      command: echo "hi i am > operator"
+      when: val1 <= 10
+      tags: t4
+    
+    - name: working with defined
+      command: echo "subject value is {{subject}}"
+      when: subject is defined
+      tags: t5
+
