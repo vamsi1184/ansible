@@ -1,0 +1,7 @@
+---
+- name: my ansible playbook
+  hosts: all
+  tasks:
+    - name: get the servers hostnames
+      command: hostname -i
+

@@ -1,0 +1,10 @@
+---
+- name: working with debug module
+  hosts: server1
+  tasks:
+    - name: working with our script
+      script: mycode.py
+      register: myoutput
+
+    - name: working with debug msg
+      debug: msg="{{myoutput.stdout_lines[3]}}"

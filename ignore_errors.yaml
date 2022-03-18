@@ -1,0 +1,11 @@
+---
+- name: working with special cases
+  hosts: server1
+  tasks:
+    - name: printing output
+      command: echo "hi team this is vamsi krishna pamdurti"
+
+    - name: running my script
+      script: ./dvsbatch1.py
+      ignore_errors: true
+

@@ -1,0 +1,5 @@
+---
+- name: working with roles
+  hosts: all
+  roles:
+    - myapache

@@ -1,0 +1,15 @@
+---
+- name: working with set_fact module
+  hosts: server1
+  tasks:
+    - name: gathering the server ip
+      command: hostname -i
+      register: myip
+
+
+    - name: debug myip
+      debug: msg="{{myip.stdout_lines[0]}}"
+
+
+    - name: assign value to a variable
+      set_fact: myprivip="{{myip.stdout_lines[0]}}"
